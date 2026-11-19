@@ -1,15 +1,16 @@
-{ lib
-, stdenv
-, fetchurl
-, cmake
-, ninja
-, pkg-config
-, rustc
-, cargo
-, zlib
-, sdl3
-, vulkan-loader
-, vulkan-headers
+{
+  lib,
+  stdenv,
+  fetchurl,
+  cmake,
+  ninja,
+  pkg-config,
+  rustc,
+  cargo,
+  zlib,
+  sdl3,
+  vulkan-loader,
+  vulkan-headers,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -24,11 +25,24 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-f9H7g0/jzKROcHnd9XuL2sVJZHXhsBv2YyBrfQVYCys=";
   };
 
-  outputs = [ "out" "dev" ];
+  outputs = [
+    "out"
+    "dev"
+  ];
 
-  nativeBuildInputs = [ cmake ninja pkg-config rustc cargo ];
-  buildInputs = [ zlib sdl3 vulkan-loader vulkan-headers ];
-
+  nativeBuildInputs = [
+    cmake
+    ninja
+    pkg-config
+    rustc
+    cargo
+  ];
+  buildInputs = [
+    zlib
+    sdl3
+    vulkan-loader
+    vulkan-headers
+  ];
 
   cmakeFlags = [
     "-DMATTI_MOBILE_ONLY=ON"
@@ -71,7 +85,10 @@ stdenv.mkDerivation (finalAttrs: {
   meta = with lib; {
     description = "Matticraft's C11 game library (shared library and public headers)";
     homepage = "https://github.com/mattiasploesch-cpu/LibMatti";
-    license = with licenses; [ mit lgpl3Plus ];
+    license = with licenses; [
+      mit
+      lgpl3Plus
+    ];
     platforms = platforms.linux;
     maintainers = [ ];
   };

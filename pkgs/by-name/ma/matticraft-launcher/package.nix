@@ -1,17 +1,18 @@
-{ lib
-, rustPlatform
-, pkg-config
-, makeWrapper
-, libxkbcommon
-, wayland
-, libGL
-, libxi
-, libxext
-, libxcb
-, libx11
-, libxcursor
-, libxrandr
-, libmatti
+{
+  lib,
+  rustPlatform,
+  pkg-config,
+  makeWrapper,
+  libxkbcommon,
+  wayland,
+  libGL,
+  libxi,
+  libxext,
+  libxcb,
+  libx11,
+  libxcursor,
+  libxrandr,
+  libmatti,
 }:
 
 rustPlatform.buildRustPackage {
@@ -21,13 +22,21 @@ rustPlatform.buildRustPackage {
 
   cargoRoot = "launchers";
   cargoLock.lockFile = ./Cargo.lock;
-  cargoBuildFlags = [ "--package" "launcher-desktop" "--bin" "matticraft-launcher" ];
+  cargoBuildFlags = [
+    "--package"
+    "launcher-desktop"
+    "--bin"
+    "matticraft-launcher"
+  ];
 
   preBuild = ''
     cd launchers
   '';
 
-  nativeBuildInputs = [ pkg-config makeWrapper ];
+  nativeBuildInputs = [
+    pkg-config
+    makeWrapper
+  ];
   buildInputs = [
     libxkbcommon
     wayland

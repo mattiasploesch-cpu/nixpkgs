@@ -1,18 +1,19 @@
-{ lib
-, stdenv
-, libmatti
-, cmake
-, ninja
-, pkg-config
-, rustc
-, cargo
-, zlib
-, sdl3
-, vulkan-loader
-, vulkan-headers
-, glfw
-, libGL
-, makeWrapper
+{
+  lib,
+  stdenv,
+  libmatti,
+  cmake,
+  ninja,
+  pkg-config,
+  rustc,
+  cargo,
+  zlib,
+  sdl3,
+  vulkan-loader,
+  vulkan-headers,
+  glfw,
+  libGL,
+  makeWrapper,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -22,9 +23,22 @@ stdenv.mkDerivation (finalAttrs: {
   # libmatti carries the pinned source; the client is built from the same tree.
   src = libmatti.src;
 
-  nativeBuildInputs = [ cmake ninja pkg-config rustc cargo makeWrapper ];
-  buildInputs = [ zlib sdl3 vulkan-loader vulkan-headers glfw libGL ];
-
+  nativeBuildInputs = [
+    cmake
+    ninja
+    pkg-config
+    rustc
+    cargo
+    makeWrapper
+  ];
+  buildInputs = [
+    zlib
+    sdl3
+    vulkan-loader
+    vulkan-headers
+    glfw
+    libGL
+  ];
 
   cmakeFlags = [
     "-DMATTI_BUILD_LAUNCHER=OFF"
@@ -68,7 +82,10 @@ stdenv.mkDerivation (finalAttrs: {
   meta = with lib; {
     description = "Matticraft client and libmatti shared library";
     homepage = "https://github.com/mattiasploesch-cpu/LibMatti";
-    license = with licenses; [ mit lgpl3Plus ];
+    license = with licenses; [
+      mit
+      lgpl3Plus
+    ];
     platforms = platforms.linux;
     maintainers = [ ];
     mainProgram = "matticraft";
